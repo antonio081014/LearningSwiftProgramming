@@ -165,9 +165,43 @@ var circle = Circle(name: "Big", r: 5);
 circle.simpleDescription()
 
 
+class Counter {
+    var count: Int = 0;
+    func incrementBy(amount: Int, numberOfTimes: Int){
+        count += amount * numberOfTimes
+    }
+}
 
+var counter = Counter()
+counter.incrementBy(2, numberOfTimes: 7)
+counter.incrementBy(2, numberOfTimes: 7)
 
-
+enum Rank: Int{
+    case Ace = 1
+    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
+    case Jack, Queen, King
+    
+    func simpleDescription() -> String{
+        switch self{
+        case .Ace:
+            return "Ace"
+        case .Jack:
+            return "Jack"
+        case .Queen:
+            return "Queen"
+        case .King:
+            return "King"
+        default:
+            return String(self.rawValue)
+        }
+    }
+    
+    func compare(a: Rank, b: Rank) -> Int{
+        if a.rawValue < b.rawValue {return -1}
+        else if a.rawValue == b.rawValue {return 0}
+        else {return 1}
+    }
+}
 
 
 

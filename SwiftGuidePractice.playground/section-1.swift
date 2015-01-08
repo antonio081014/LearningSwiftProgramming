@@ -176,12 +176,17 @@ var counter = Counter()
 counter.incrementBy(2, numberOfTimes: 7)
 counter.incrementBy(2, numberOfTimes: 7)
 
-enum Rank: Int{
+protocol ExampleProtocol{
+    var simpleDescription: String {get}
+    mutating func adjust()
+}
+
+enum Rank: Int, ExampleProtocol{
     case Ace = 1
     case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
     case Jack, Queen, King
     
-    func simpleDescription() -> String{
+    var simpleDescription: String{
         switch self{
         case .Ace:
             return "Ace"
@@ -193,6 +198,19 @@ enum Rank: Int{
             return "King"
         default:
             return String(self.rawValue)
+        }
+    }
+    
+    mutating func adjust() {
+        switch self{
+        case .Ace:
+            self = Rank.King
+        case .Jack:
+            self = Rank.Queen
+        case .Queen:
+            self = Rank.Ace
+        case .King:
+            self = Rank.Ace
         }
     }
     

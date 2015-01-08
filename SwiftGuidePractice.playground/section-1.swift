@@ -263,7 +263,7 @@ struct Card {
     var suit: Suit
     
     func simpleDescription() -> String{
-        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+        return "The \(rank.simpleDescription) of \(suit.simpleDescription())"
     }
     
     func fullDeck() -> [Card]{
@@ -286,6 +286,19 @@ let threeOfSpades = Card(rank: .Three, suit: .Spades)
 threeOfSpades.simpleDescription()
 threeOfSpades.fullDeck()
 
+class SimpleClass: ExampleProtocol{
+    var simpleDescription: String = "A very simple class."
+    var anotherProperty: Int = 69105
+    
+    func adjust() {
+        simpleDescription += " Now 100% adjusted."
+    }
+}
+
+var aobject = SimpleClass()
+println(aobject.simpleDescription)
+aobject.adjust()
+println(aobject.simpleDescription)
 
 
 

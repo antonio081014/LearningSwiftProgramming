@@ -207,7 +207,7 @@ let ace = Rank.Ace
 let aceRaw = ace.rawValue
 ace.compareTo(Rank.Ten)
 
-enum Suit{
+enum Suit: Int{
     case Spades, Hearts, Diamonds, Clubs
     func simpleDescription() -> String{
         switch self{
@@ -240,8 +240,33 @@ let hearts = Suit.Hearts
 let heartsDescription = hearts.simpleDescription()
 hearts.color()
 
+struct Card {
+    var rank: Rank
+    var suit: Suit
+    
+    func simpleDescription() -> String{
+        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+    }
+    
+    func fullDeck() -> [Card]{
+        var deck: [Card] = [];
+        for r in 0...Rank.King.rawValue{
+            if let rank = Rank(rawValue: r){
+                for s in 0...Suit.Clubs.rawValue{
+                    if let suit = Suit(rawValue: s){
+                        deck.append(Card(rank: rank, suit: suit))
+                    }
+                }
+            }
+        }
+        
+        return deck;
+    }
+}
 
-
+let threeOfSpades = Card(rank: .Three, suit: .Spades)
+threeOfSpades.simpleDescription()
+threeOfSpades.fullDeck()
 
 
 

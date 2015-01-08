@@ -196,16 +196,49 @@ enum Rank: Int{
         }
     }
     
-    func compare(a: Rank, b: Rank) -> Int{
-        if a.rawValue < b.rawValue {return -1}
-        else if a.rawValue == b.rawValue {return 0}
+    func compareTo(b: Rank) -> Int{
+        if self.rawValue < b.rawValue {return -1}
+        else if self.rawValue == b.rawValue {return 0}
         else {return 1}
     }
 }
 
+let ace = Rank.Ace
+let aceRaw = ace.rawValue
+ace.compareTo(Rank.Ten)
 
+enum Suit{
+    case Spades, Hearts, Diamonds, Clubs
+    func simpleDescription() -> String{
+        switch self{
+        case .Spades:
+            return "spades";
+        case .Hearts:
+            return "hearts";
+        case .Diamonds:
+            return "diamonds";
+        case .Clubs:
+            return "clubs";
+        }
+    }
+    
+    func color() -> String{
+        switch self{
+        case .Spades:
+            return "black";
+        case .Hearts:
+            return "red";
+        case .Diamonds:
+            return "red";
+        case .Clubs:
+            return "black";
+        }
+    }
+}
 
-
+let hearts = Suit.Hearts
+let heartsDescription = hearts.simpleDescription()
+hearts.color()
 
 
 
